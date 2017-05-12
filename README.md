@@ -37,3 +37,10 @@ Create a Single Page Application in which the homepage lists a set of Tasks the 
 * User is presented with six random Tasks that are chosen from a set of ten.
 * User should be able to mark a Task as complete.
 * User should be able to see a circle that represents the Progress made on completed the assigned Tasks.
+
+
+### Components
+
+* Task Board
+* Task
+* Progress Disk
