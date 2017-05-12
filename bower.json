@@ -9,10 +9,10 @@
   "private": true,
   "dependencies": {
     "angular": "^1.6.3",
-    "angular-ui-router": "^1.0.3"
+    "angular-ui-router": "^1.0.3",
+    "jquery-circle-progress": "^1.2.2"
   },
-  "overrides": {
-  },
+  "overrides": {},
   "version": "1.0.0",
   "author": "DecaHub"
 }
