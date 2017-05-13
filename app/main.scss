@@ -1,1 +1,167 @@
-// Styles here or in any other .less files in the app folder
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One|Roboto');
+
+$taskboard-bg-color: #1D3F2E;
+$task-bg-color: #1B181B;
+$task-hover-color: #403940;
+$overlay-color: #673D67;
+$complete-color: #48C481;
+$incomplete-color: #676667;
+
+$board-font: 'Fjalla One', sans-serif;
+$task-font: 'Roboto', sans-serif;
+
+* {
+
+	box-sizing: border-box;
+
+}
+
+html, body {
+	
+	padding: 0;
+	margin: 0;
+	
+	height: 100%;
+	
+}
+
+.board {
+	
+	display: flex;
+	
+	flex-flow: column nowrap;
+	
+	height: 100%;
+	
+	background: url("mountain.png");
+	background-size: 100%;
+	
+	color: white;
+	
+	font-family: $board-font;
+	
+	.board-header {
+		
+		display: flex;
+		
+		align-items: center;
+		justify-content: center;
+		
+		background: $taskboard-bg-color;
+		opacity: 0.8;
+		
+	}
+	
+	.board-body {
+		
+		display: flex;
+		
+		flex-flow: column nowrap;
+		
+		background: $overlay-color;
+		
+	}
+	
+}
+
+.task {
+	
+	display: flex;
+	flex-flow: row nowrap;
+	
+	justify-content: space-between;
+	align-content: center;
+	align-items: center;
+	
+	position: relative;
+	
+	width: 100%;
+	
+	background: $task-bg-color;
+	opacity: 0.9;
+	
+	margin-bottom: 10px;
+	padding: 10px;
+	
+	font-family: $task-font;
+	font-size: 18px;
+	line-height: 30px;
+	
+	cursor: pointer;
+	user-select: none;
+	
+	transition: 0.2s;
+	
+	&:hover {
+		
+		background: $task-hover-color;
+		
+	}
+	
+	.task-body {
+		
+		display: flex;
+		
+		flex-flow: column nowrap;
+		
+		justify-content: center;
+		
+	}
+	
+	.task-marker {
+		
+		display: flex;
+		
+		font-size: 250%;
+		
+		.incomplete {
+			
+			color: $incomplete-color;
+			opacity: 0.3;
+			
+		}
+		
+		.complete {
+			
+			color: $complete-color;
+			
+		}
+		
+		
+	}
+	
+}
+
+
+
+#progressDisk {
+	
+	display: flex;
+	
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	
+	//position: relative;
+	
+	background: rgba(70,47,61, 0.55);
+	
+	padding: 20px;
+	
+	#disk {
+		
+		//display: block;
+	}
+	
+	#progress {
+		
+		display: block;
+		
+		position: absolute;
+		
+		font-size: 300%;
+		
+	}
+	
+}
+
