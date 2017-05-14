@@ -1,0 +1,16 @@
+<div class="task">
+	<div class="task-body">
+		{{::$ctrl.description}}
+	</div>
+	<div class="task-marker">
+		<i ng-class="{
+			'fa': true,
+			'fa-check-circle': true,
+			checkCircle: true,
+			incomplete: !$ctrl.state,
+			complete: $ctrl.state
+			}"
+		   ng-click="$ctrl.flip({taskID: $ctrl.taskId})"
+		   aria-hidden="true"></i>
+	</div>
+</div>

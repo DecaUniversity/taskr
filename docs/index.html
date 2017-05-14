@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="main">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>taskr</title>
+		
+		<!-- bower:css -->
+		<!-- endinject -->
+		
+		<!-- inject:css -->
+		<link rel="stylesheet" href="main.css">
+		<!-- endinject -->
+		
+	</head>
+	<body>
+		
+		<div class="container">
+			<dh-taskboard taskboard-title="TASKS"></dh-taskboard>
+		</div>
+		
+		<script src="https://use.fontawesome.com/f1888381e4.js"></script>
+		
+		<!-- bower:js -->
+		<script src="lib/angular/angular.js"></script>
+		<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+		<script src="lib/jquery/dist/jquery.js"></script>
+		<script src="lib/jquery-circle-progress/dist/circle-progress.js"></script>
+		<!-- endinject -->
+		
+		<!-- inject:js -->
+		<script src="main.app.js"></script>
+		<script src="components/progressDisk/progressDisk.directive.js"></script>
+		<script src="common/services/progress.service.js"></script>
+		<script src="common/services/taskData.service.js"></script>
+		<script src="common/services/taskID.service.js"></script>
+		<script src="main.controller.js"></script>
+		<script src="components/task/task.component.js"></script>
+		<script src="components/taskboard/taskboard.component.js"></script>
+		<!-- endinject -->
+		
+	</body>
+</html>
