@@ -5,7 +5,7 @@
 			<i></i>
 		</div>
 		
-		<h2>{{$ctrl.taskboardTitle}}</h2>
+		<h2>{{::$ctrl.taskboardTitle}}</h2>
 		
 		<div id="home" class="navButton placer" ng-click="$ctrl.flipShowTasks()">
 			<i class="fa fa-home" aria-hidden="true" ng-if="$ctrl.showTasks"></i>
@@ -37,10 +37,7 @@
 			         flip="$ctrl.flip(taskID)"
 			></dh-task>
 			
-		
-			
 		</div>
-		
 	
 	</div>
 </div>
