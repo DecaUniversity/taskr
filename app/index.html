@@ -16,13 +16,7 @@
 	<body>
 		
 		<div class="container">
-			<dh-task-board></dh-task-board>
-			<!--<div ng-controller="Controller">-->
-				<!--{{message}}-->
-				<!--<my-dialog number="number" analyze="hideDialog(num)">-->
-					<!--Check out the contents, {{name}}!-->
-				<!--</my-dialog>-->
-			<!--</div>-->
+			<dh-taskboard taskboard-title="TASKS"></dh-taskboard>
 		</div>
 		
 		<script src="https://use.fontawesome.com/f1888381e4.js"></script>
@@ -37,11 +31,12 @@
 		<!-- inject:js -->
 		<script src="dist/main.app.js"></script>
 		<script src="dist/components/progressDisk/progressDisk.directive.js"></script>
-		<script src="dist/components/task/task.directive.js"></script>
-		<script src="dist/components/taskboard/taskboard.directive.js"></script>
+		<script src="dist/common/services/progress.service.js"></script>
 		<script src="dist/common/services/taskData.service.js"></script>
 		<script src="dist/common/services/taskID.service.js"></script>
 		<script src="dist/main.controller.js"></script>
+		<script src="dist/components/task/task.component.js"></script>
+		<script src="dist/components/taskboard/taskboard.component.js"></script>
 		<!-- endinject -->
 		
 	</body>
