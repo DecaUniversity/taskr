@@ -9,14 +9,12 @@ angular.module("main").service("ProgressService", function () {
 	this.increaseProgress = function () {
 		
 		tasksCompleted += 1;
-		console.log(tasksCompleted);
 		
 	};
 	
 	this.decreaseProgress = function () {
 		
 		tasksCompleted -= 1;
-		console.log(tasksCompleted);
 		
 	};
 	
