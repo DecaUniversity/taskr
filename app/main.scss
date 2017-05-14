@@ -5,7 +5,7 @@ $task-bg-color: #1B181B;
 $task-hover-color: #403940;
 $overlay-color: #673D67;
 $complete-color: #48C481;
-$incomplete-color: #676667;
+$incomplete-color: #695D64;
 
 $board-font: 'Fjalla One', sans-serif;
 $task-font: 'Roboto', sans-serif;
@@ -23,9 +23,13 @@ html, body {
 	
 	height: 100%;
 	
+	background: #655A60;
+	
 }
 
 .board {
+	
+	margin: auto;
 	
 	display: flex;
 	
@@ -40,6 +44,8 @@ html, body {
 	
 	font-family: $board-font;
 	
+	max-width: 730px;
+	
 	.board-header {
 		
 		display: flex;
@@ -47,7 +53,10 @@ html, body {
 		height: 10vh;
 		
 		align-items: center;
-		justify-content: center;
+		justify-content: space-between;
+		//align-content: space-between;
+		
+		padding: 0 10px;
 		
 		background: $taskboard-bg-color;
 		opacity: 0.8;
@@ -145,7 +154,7 @@ html, body {
 	display: flex;
 	
 	flex-flow: column nowrap;
-	justify-content: center;
+	justify-content: space-around;
 	
 	min-height: 100%;
 	
@@ -153,19 +162,59 @@ html, body {
 
 #progressDisk {
 	
-	display: flex;
+	display: block;
 	
-	flex-flow: column nowrap;
-	justify-content: center;
-	align-items: center;
+	height: 100%;
 	
-	padding: 20px;
+	position: relative;
+	width: 100%;
+	z-index: 1;
+	
+	background: blue;
+	
+	//padding: 20px;
+	
+	#disk {
+		
+		display: flex;
+		
+		flex-flow: column nowrap;
+		
+		justify-content: center;
+		align-items: center;
+		
+		background: green;
+		
+		height: 100%;
+		
+		position: absolute;
+		
+		width: 100%;
+		
+		//background: red;
+		
+		z-index: 999;
+		
+	}
 	
 	#progress {
 		
-		display: block;
+		display: flex;
+		
+		flex-flow: column nowrap;
+		
+		justify-content: center;
+		align-items: center;
+		
+		height: 100%;
 		
 		position: absolute;
+		
+		width: 100%;
+		
+		background: red;
+		
+		z-index: 999;
 		
 		font-size: 300%;
 		
@@ -189,16 +238,9 @@ html, body {
 	
 }
 
-#list {
+.placer {
 	
-	margin: 50px;
-	
-}
-
-#home {
-	
-	position: absolute;
-	right: 10px;
+	min-width: 40px;
 	
 }
 
