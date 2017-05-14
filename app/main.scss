@@ -145,7 +145,7 @@ html, body {
 	display: flex;
 	
 	flex-flow: column nowrap;
-	justify-content: center;
+	justify-content: space-around;
 	
 	min-height: 100%;
 	
@@ -153,19 +153,59 @@ html, body {
 
 #progressDisk {
 	
-	display: flex;
+	display: block;
 	
-	flex-flow: column nowrap;
-	justify-content: center;
-	align-items: center;
+	height: 100%;
 	
-	padding: 20px;
+	position: relative;
+	width: 100%;
+	z-index: 1;
+	
+	background: blue;
+	
+	//padding: 20px;
+	
+	#disk {
+		
+		display: flex;
+		
+		flex-flow: column nowrap;
+		
+		justify-content: center;
+		align-items: center;
+		
+		background: green;
+		
+		height: 100%;
+		
+		position: absolute;
+		
+		width: 100%;
+		
+		//background: red;
+		
+		z-index: 999;
+		
+	}
 	
 	#progress {
 		
-		display: block;
+		display: flex;
+		
+		flex-flow: column nowrap;
+		
+		justify-content: center;
+		align-items: center;
+		
+		height: 100%;
 		
 		position: absolute;
+		
+		width: 100%;
+		
+		background: red;
+		
+		z-index: 999;
 		
 		font-size: 300%;
 		
@@ -191,7 +231,6 @@ html, body {
 
 #list {
 	
-	margin: 50px;
 	
 }
 
