@@ -23,6 +23,11 @@ const ngsource = require("ngsource");
 const browserSync = require("browser-sync");
 const reload = browserSync.reload;
 
+const imagemin = require("gulp-imagemin");
+const deleteEmpty = require("delete-empty");
+const uglify = require("gulp-uglify");
+const cleanCSS = require("gulp-clean-css");
+
 const log = require("bootstrap-logs");
 
 /**
@@ -76,6 +81,16 @@ let srcFiles = {
 		"!app/dist",
 		"!app/dist/**",
 		"app/**/*.js"
+	],
+	images: [
+		"!app/lib",
+		"!app/lib/**",
+		"!app/dist",
+		"!app/dist/**",
+		"app/**/*.png",
+		"app/**/*.jpg",
+		"app/**/*.jpeg",
+		"app/**/*.gif",
 	],
 	injectorAngular: []
 	
@@ -135,7 +150,7 @@ gulp.task("init", function() {
 		'lib-watch'
 	];
 	
-	runSequence(cleaning, 'sass', 'eslint', 'transpile', 'setSource', 'inject', 'inject:lib', watching, "serve");
+	runSequence(cleaning, 'sass', 'eslint', 'transpile', 'setSource', 'inject', 'inject:lib', 'imageop', watching, "serve");
 	
 });
 
@@ -197,6 +212,18 @@ gulp.task("transpile", function () {
 		}))
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(destDir.js));
+	
+});
+
+/**
+ * Optimize images
+ */
+
+gulp.task('imageop', function () {
+	
+	gulp.src(srcFiles.images)
+		.pipe(imagemin())
+		.pipe(gulp.dest("app/dist"));
 	
 });
 
@@ -501,13 +528,37 @@ gulp.task("clean:docs", function () {
 /**
  * Copies dist content to docs: all of the compiles .scss and transpiled .js
  */
-gulp.task("copy:dist:docs", function () {
+gulp.task("copy:dist:docs:js", function () {
 	
 	return gulp.src([
-			"app/dist/**/*"
+			"app/dist/**/*.js"
 		], {
 			base: "app/dist"
 		})
+		.pipe(concat("dist.js"))
+		.pipe(uglify())
+		.pipe(gulp.dest("./docs"));
+	
+});
+
+gulp.task('copy:dist:docs:css', function() {
+	
+	return gulp.src("app/dist/**/*.css")
+		.pipe(concat("main.css"))
+		.pipe(cleanCSS({compatibility: "ie8"}))
+		.pipe(gulp.dest("./docs"));
+	
+});
+
+gulp.task('copy:dist:docs:images', function() {
+	
+	return gulp.src([
+			"app/dist/**/*.png",
+			"app/dist/**/*.jpg",
+			"app/dist/**/*.jpeg",
+			"app/dist/**/*.gif",
+		])
+		.pipe(imagemin())
 		.pipe(gulp.dest("./docs"));
 	
 });
@@ -517,11 +568,9 @@ gulp.task("copy:dist:docs", function () {
  */
 gulp.task("copy:lib:docs", function () {
 	
-	return gulp.src([
-			"app/lib/**/*"
-		], {
-			base: "app"
-		})
+	return gulp.src(mainBowerFiles())
+		.pipe(concat("all_vendor.js"))
+		.pipe(uglify())
 		.pipe(gulp.dest("./docs"));
 	
 });
@@ -541,6 +590,36 @@ gulp.task("copy:others:docs", function () {
 			"!app/**/*.scss"
 		], { base: "app" })
 		.pipe(gulp.dest("docs"))
+	
+});
+
+/**
+ * Delete empty folders
+ */
+
+
+gulp.task("delete:folders:empty", function () {
+	
+	deleteEmpty.sync("docs/");
+	
+});
+
+gulp.task('delete:bower', function () {
+	
+	/**
+	 * devDependencies won't be injected into
+	 */
+	
+	let injectOptions = {
+		name: "bower",
+		ignorePath: 'docs/',
+		addRootSlash: false,
+		empty: true
+	};
+	
+	return gulp.src("docs/index.html")
+		.pipe(injector(gulp.src("", {read: false}), injectOptions))
+		.pipe(gulp.dest("docs"));
 	
 });
 
@@ -593,6 +672,6 @@ gulp.task('inject:docs', function () {
  */
 gulp.task("build:docs", function () {
 	
-	runSequence("clean:docs", "copy:dist:docs", "copy:others:docs", "copy:lib:docs", "inject:docs");
+	runSequence("clean:docs", "copy:dist:docs:js", "copy:dist:docs:css", "copy:dist:docs:images", "copy:others:docs", "copy:lib:docs", "delete:folders:empty", "delete:bower", "inject:docs");
 	
 });
