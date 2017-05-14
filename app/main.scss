@@ -5,7 +5,7 @@ $task-bg-color: #1B181B;
 $task-hover-color: #403940;
 $overlay-color: #673D67;
 $complete-color: #48C481;
-$incomplete-color: #676667;
+$incomplete-color: #695D64;
 
 $board-font: 'Fjalla One', sans-serif;
 $task-font: 'Roboto', sans-serif;
@@ -23,9 +23,13 @@ html, body {
 	
 	height: 100%;
 	
+	background: #655A60;
+	
 }
 
 .board {
+	
+	margin: auto;
 	
 	display: flex;
 	
@@ -39,6 +43,8 @@ html, body {
 	color: white;
 	
 	font-family: $board-font;
+	
+	max-width: 730px;
 	
 	.board-header {
 		
