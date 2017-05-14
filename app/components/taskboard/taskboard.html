@@ -1,14 +1,15 @@
 <div class="board">
 	<div class="board-header">
-		<h2>TASKS</h2>
+		<h2>{{taskBoard.title}}</h2>
+		<span></span>
 	</div>
 	<dh-progress-disk></dh-progress-disk>
 	<div class="board-body">
-		<dh-task></dh-task>
-		<dh-task></dh-task>
-		<dh-task></dh-task>
-		<dh-task></dh-task>
-		<dh-task></dh-task>
-		<dh-task></dh-task>
+		<dh-task
+				ng-repeat="task in taskBoard.tasks"
+				switch-state="taskBoard.switchTaskState(taskIDs)"
+				description="{{task.description}}"
+				state="task.completed"
+				task-id="{{task.id}}"></dh-task>
 	</div>
 </div>
