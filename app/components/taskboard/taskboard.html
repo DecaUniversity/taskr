@@ -1,15 +1,34 @@
 <div class="board">
 	<div class="board-header">
-		<h2>{{taskBoard.title}}</h2>
-		<span></span>
+		<h2>{{$ctrl.taskboardTitle}}</h2>
+		<div id="home" class="navButton" ng-click="$ctrl.flipShowTasks()" ng-if="$ctrl.showTasks">
+			<i class="fa fa-home" aria-hidden="true"></i>
+		</div>
 	</div>
-	<dh-progress-disk></dh-progress-disk>
 	<div class="board-body">
-		<dh-task
-				ng-repeat="task in taskBoard.tasks"
-				switch-state="taskBoard.switchTaskState(taskIDs)"
-				description="{{task.description}}"
-				state="task.completed"
-				task-id="{{task.id}}"></dh-task>
+		
+		<div id="homeView" class="view" ng-if="!$ctrl.showTasks">
+			<dh-progress-disk fill="'white'" thickness="10" size="180"></dh-progress-disk>
+			
+			<div id="list" class="navButton" ng-click="$ctrl.flipShowTasks()">
+				<i class="fa fa-list" aria-hidden="true"></i>
+			</div>
+		</div>
+		
+		<div id="listView" class="view" ng-if="$ctrl.showTasks">
+			<!--<div class="board-body">-->
+			
+			<dh-task ng-repeat="task in $ctrl.taskList"
+			         description="{{::task.description}}"
+			         state="task.completed"
+			         task-id="task.id"
+			         flip="$ctrl.flip(taskID)"
+			></dh-task>
+			
+		
+			
+		</div>
+		
+	
 	</div>
 </div>
