@@ -1,9 +1,16 @@
 <div class="board">
 	<div class="board-header">
-		<h2>{{$ctrl.taskboardTitle}}</h2>
-		<div id="home" class="navButton" ng-click="$ctrl.flipShowTasks()" ng-if="$ctrl.showTasks">
-			<i class="fa fa-home" aria-hidden="true"></i>
+		
+		<div class="navButton placer">
+			<i></i>
 		</div>
+		
+		<h2>{{$ctrl.taskboardTitle}}</h2>
+		
+		<div id="home" class="navButton placer" ng-click="$ctrl.flipShowTasks()">
+			<i class="fa fa-home" aria-hidden="true" ng-if="$ctrl.showTasks"></i>
+		</div>
+		
 	</div>
 	<div class="board-body">
 		

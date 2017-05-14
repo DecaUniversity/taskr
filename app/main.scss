@@ -47,7 +47,10 @@ html, body {
 		height: 10vh;
 		
 		align-items: center;
-		justify-content: center;
+		justify-content: space-between;
+		//align-content: space-between;
+		
+		padding: 0 10px;
 		
 		background: $taskboard-bg-color;
 		opacity: 0.8;
@@ -229,15 +232,9 @@ html, body {
 	
 }
 
-#list {
+.placer {
 	
-	
-}
-
-#home {
-	
-	position: absolute;
-	right: 10px;
+	min-width: 40px;
 	
 }
 
