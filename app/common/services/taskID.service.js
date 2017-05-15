@@ -1,23 +1,35 @@
 "use strict";
 
-angular
-	.module("main")
-	.factory("TaskIDService", TaskIDService);
+/**
+ * Progress Service
+ * @namespace CommonServices
+ */
 
-function TaskIDService() {
+(function (app) {
 	
-	let taskID = 0;
+	/**
+	 * @function TaskIDService
+	 * @description Creates a unique ID for a task.
+	 */
 	
-	let increaseTaskID = function () {
-		
-		return taskID++;
-		
-	};
+	app.factory("TaskIDService", TaskIDService);
 	
-	return {
+	function TaskIDService() {
 		
-		getID: increaseTaskID,
+		let taskID = 0;
+		
+		let increaseTaskID = function () {
+			
+			return taskID++;
+			
+		};
+		
+		return {
+			
+			getID: increaseTaskID,
+			
+		}
 		
 	}
 	
-}
+}(angular.module("main")));
