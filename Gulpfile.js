@@ -147,7 +147,8 @@ gulp.task("init", function() {
 		'scss-watch',
 		'html-watch',
 		'js-watch',
-		'lib-watch'
+		'lib-watch',
+		'img-watch'
 	];
 	
 	runSequence(cleaning, 'sass', 'eslint', 'transpile', 'setSource', 'inject', 'inject:lib', 'imageop', watching, "serve");
@@ -221,7 +222,13 @@ gulp.task("transpile", function () {
 
 gulp.task('imageop', function () {
 	
-	gulp.src(srcFiles.images)
+	runSequence("imageop:helper", "reload:browser");
+	
+});
+
+gulp.task("imageop:helper", function () {
+	
+	return gulp.src(srcFiles.images)
 		.pipe(imagemin())
 		.pipe(gulp.dest("app/dist"));
 	
@@ -305,6 +312,12 @@ gulp.task("serve", function () {
 			baseDir: "app"
 		}
 	})
+	
+});
+
+gulp.task("reload:browser", function () {
+	
+	reload();
 	
 });
 
@@ -455,6 +468,100 @@ gulp.task('scss-watch', function(){
 	
 });
 
+/**
+ * Watch image files for changes.
+ * Perform actions based on the file event: added, deleted, changed.
+ */
+
+gulp.task('img-watch', function(){
+	
+	let watcher = watch(srcFiles.images);
+	
+	watcher.on('unlink', function (filepath) {
+		
+		console.log(filepath + " is deleted. Deleting corresponding image files from app/dist");
+		
+		let fullPath = filepath;
+		let rootToImg = "app/dist/";
+		let fileNameBase = path.basename(filepath);
+		let pathToImg = "";
+		let fullPathToImg = "";
+		
+		let fullPathArray = fullPath.split("/");
+		let index = 0;
+		
+		console.log(fullPath);
+		console.log(rootToImg);
+		console.log(fileNameBase);
+		console.log(pathToImg);
+		console.log(fullPathToImg);
+		
+		for (let i = 0; i < fullPathArray.length; i++) {
+
+			if (fullPathArray[i] === "app") {
+
+				index = i;
+
+				break;
+
+			}
+		}
+
+		for (let i = index; i < fullPathArray.length - 1; i++) {
+
+			if (i > index && i < fullPathArray.length - 1) {
+				
+				pathToImg += fullPathArray[i] + "/";
+
+			}
+
+		}
+		
+		fullPathToImg = rootToImg + pathToImg + fileNameBase;
+
+		del(fullPathToImg)
+			.then(function(paths){
+				console.log("deleted files: " + paths.join('\n'));
+
+			});
+		
+	});
+	
+	watcher.on('add', function (filepath) {
+		
+		console.log(filepath + " is added. Adding corresponding image files to app/dist");
+		
+		gulp.task("img-watch:helper:add", function () {
+			
+			return gulp.src(filepath)
+				.pipe(imagemin())
+				.pipe(gulp.dest("app/dist"));
+			
+		});
+		
+		runSequence("img-watch:helper:add", "reload:browser");
+		
+	});
+	
+	
+	watcher.on('change', function (filepath) {
+		
+		console.log(filepath + " changed.");
+		
+		gulp.task("img-watch:helper:change", function () {
+			
+			return gulp.src(filepath)
+				.pipe(imagemin())
+				.pipe(gulp.dest("app/dist"));
+			
+		});
+		
+		runSequence("img-watch:helper:add", "reload:browser");
+		
+	});
+	
+});
+
 gulp.task('html-watch', function () {
 	
 	let watcher = watch(srcFiles.html);
@@ -478,6 +585,8 @@ gulp.task('html-watch', function () {
 	})
 	
 });
+
+
 
 gulp.task("lib-watch", function () {
 	
