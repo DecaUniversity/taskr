@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One|Roboto');
 
+$bg-color: #655A60;
 $taskboard-bg-color: #1D3F2E;
 $task-bg-color: #1B181B;
 $task-hover-color: #403940;
@@ -11,9 +12,9 @@ $board-font: 'Fjalla One', sans-serif;
 $task-font: 'Roboto', sans-serif;
 
 * {
-
+	
 	box-sizing: border-box;
-
+	
 }
 
 html, body {
@@ -23,7 +24,7 @@ html, body {
 	
 	height: 100%;
 	
-	background: #655A60;
+	background: $bg-color;
 	
 }
 
@@ -54,7 +55,6 @@ html, body {
 		
 		align-items: center;
 		justify-content: space-between;
-		//align-content: space-between;
 		
 		padding: 0 10px;
 		
@@ -144,7 +144,6 @@ html, body {
 			
 		}
 		
-		
 	}
 	
 }
@@ -170,10 +169,6 @@ html, body {
 	width: 100%;
 	z-index: 1;
 	
-	background: blue;
-	
-	//padding: 20px;
-	
 	#disk {
 		
 		display: flex;
@@ -183,15 +178,11 @@ html, body {
 		justify-content: center;
 		align-items: center;
 		
-		background: green;
-		
 		height: 100%;
 		
 		position: absolute;
 		
 		width: 100%;
-		
-		//background: red;
 		
 		z-index: 999;
 		
@@ -211,8 +202,6 @@ html, body {
 		position: absolute;
 		
 		width: 100%;
-		
-		background: red;
 		
 		z-index: 999;
 		
@@ -243,4 +232,3 @@ html, body {
 	min-width: 40px;
 	
 }
-
