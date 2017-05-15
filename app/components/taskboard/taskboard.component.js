@@ -1,5 +1,10 @@
 "use strict";
 
+/**
+ * Task Board Component
+ * @namespace Components
+ */
+
 (function (app) {
 	
 	const TaskController = function (TaskDataService, ProgressService) {
@@ -33,6 +38,11 @@
 		};
 		
 	};
+	
+	/**
+	 * @desc Task Board component that encapsulates a list of tasks
+	 * @example <dh-taskboard></dh-taskboard>
+	 */
 	
 	app.component("dhTaskboard", {
 		
